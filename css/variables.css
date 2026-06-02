@@ -1,0 +1,89 @@
+/* css/variables.css - Colégio Técnico KNOW Design Tokens */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette - HSL values based on the official Logo */
+  --hue-green-deep: 160;
+  --hue-green-mint: 152;
+  --hue-gray-sage: 168;
+  
+  /* Fonts */
+  --font-headings: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Animation Timings */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Layout Constants */
+  --nav-height: 80px;
+  --nav-height-shrunk: 65px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-full: 9999px;
+  
+  /* Shadows & Glows */
+  --glow-mint-sm: 0 0 10px hsla(152, 53%, 56%, 0.2);
+  --glow-mint-md: 0 0 20px hsla(152, 53%, 56%, 0.4);
+  --glow-mint-lg: 0 0 35px hsla(152, 53%, 56%, 0.6);
+  --glow-deep-sm: 0 0 10px hsla(160, 69%, 26%, 0.3);
+  
+  /* Theme Settings - Dark Mode (Default Premium Theme) */
+  --bg-primary: #0a0f0d;
+  --bg-secondary: #111a16;
+  --bg-tertiary: #16241e;
+  --bg-glass: rgba(10, 15, 13, 0.75);
+  --border-glass: rgba(85, 203, 150, 0.12);
+  --border-glass-hover: rgba(85, 203, 150, 0.3);
+  
+  --text-primary: #f0f4f2;
+  --text-secondary: #a3b3ac;
+  --text-muted: #6f8279;
+  
+  --brand-deep: #146E51;
+  --brand-mint: #55CB96;
+  --brand-mint-hover: #6ae0ab;
+  --brand-sage: #7C9993;
+  --brand-light: #C2CBCC;
+  
+  --gradient-brand: linear-gradient(135deg, #146E51 0%, #55CB96 100%);
+  --gradient-dark: linear-gradient(180deg, #0a0f0d 0%, #111a16 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(20, 110, 81, 0.1) 0%, rgba(85, 203, 150, 0.05) 100%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+  
+  /* Specific Course Subtheme Colors */
+  --theme-info: #00b4d8;
+  --theme-info-rgb: 0, 180, 216;
+  --theme-enferm: #ff4d6d;
+  --theme-enferm-rgb: 255, 77, 109;
+  --theme-admin: #ffb703;
+  --theme-admin-rgb: 255, 183, 3;
+}
+
+/* Light Theme overrides if toggled */
+[data-theme="light"] {
+  --bg-primary: #f4f8f6;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e9f2ee;
+  --bg-glass: rgba(244, 248, 246, 0.8);
+  --border-glass: rgba(20, 110, 81, 0.08);
+  --border-glass-hover: rgba(20, 110, 81, 0.2);
+  
+  --text-primary: #111a16;
+  --text-secondary: #4a5c54;
+  --text-muted: #7c9389;
+  
+  --gradient-dark: linear-gradient(180deg, #f4f8f6 0%, #ffffff 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(20, 110, 81, 0.04) 0%, rgba(85, 203, 150, 0.08) 100%);
+  
+  --shadow-sm: 0 2px 8px rgba(20, 110, 81, 0.06);
+  --shadow-md: 0 8px 24px rgba(20, 110, 81, 0.1);
+  --shadow-lg: 0 16px 40px rgba(20, 110, 81, 0.14);
+}
