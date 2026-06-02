@@ -318,6 +318,12 @@ function initDashboardShell() {
 
   sidebarBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      const externalHref = btn.getAttribute('data-href');
+      if (externalHref) {
+        window.location.href = externalHref;
+        return;
+      }
+
       const targetPaneId = btn.getAttribute('data-target');
 
       // Update sidebar highlights
