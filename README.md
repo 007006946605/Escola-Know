@@ -1,69 +1,84 @@
-# Colegio Tecnico KNOW
+# Colégio Técnico KNOW
 
-Projeto academico de site institucional para uma escola tecnica ficticia. A aplicacao combina apresentacao comercial, experiencias interativas de captacao e um painel administrativo da Secretaria para leitura dos leads gerados.
+Projeto acadêmico de site institucional para uma escola técnica fictícia. A aplicação combina landing page, experiências interativas de captação e um dashboard dedicado da Secretaria para acompanhar leads, cursos e funil de matrículas.
 
 ## Preview
 
-### Secretaria - Visao Geral
+### Secretaria - Visão Geral
 
-![Preview da Secretaria - Visao Geral](assets/previews/secretaria-01-overview.png)
+![Preview da Secretaria - Visão Geral](assets/previews/secretaria-01-overview.png)
+
+### Secretaria - Cursos
+
+![Preview da Secretaria - Cursos](assets/previews/secretaria-02-courses.png)
 
 ### Secretaria - Pipeline
 
-![Preview da Secretaria - Pipeline](assets/previews/secretaria-02-pipeline.png)
+![Preview da Secretaria - Pipeline](assets/previews/secretaria-03-pipeline.png)
 
 ### Secretaria - Leads
 
-![Preview da Secretaria - Leads](assets/previews/secretaria-03-leads.png)
+![Preview da Secretaria - Leads](assets/previews/secretaria-04-leads.png)
 
 ## Objetivo do Projeto
 
-O projeto demonstra um fluxo completo de captacao educacional:
+O projeto demonstra um fluxo completo de captação educacional:
 
-1. O visitante conhece a escola, os cursos e as perguntas frequentes.
-2. O visitante usa ferramentas do KNOW Hub, como quiz vocacional e raspadinha.
-3. O visitante envia interesse pelo formulario de matricula.
-4. A Secretaria visualiza esses leads em um painel proprio com metricas, cursos, pipeline e detalhe operacional.
+1. O visitante conhece a escola, os cursos, a matriz curricular e as perguntas frequentes.
+2. O visitante usa ferramentas do KNOW Hub, como quiz vocacional e raspadinha de eventos.
+3. O visitante envia interesse pelo formulário de matrícula.
+4. A Secretaria acompanha esses leads em um painel próprio, com métricas, cursos, pipeline e detalhes operacionais.
 
-## Paginas Principais
+## Páginas Principais
 
-- `index.html`: site principal, com landing page, cursos, FAQ, KNOW Hub e formulario.
-- `secretaria.html`: dashboard da Secretaria, separado do site publico para facilitar apresentacao do fluxo administrativo.
+- `index.html`: site público, com landing page, cursos, FAQ, KNOW Hub e formulário de interesse.
+- `secretaria.html`: dashboard administrativo separado do site público, focado na rotina da Secretaria.
 
-## Modulos JavaScript
+## Dashboard da Secretaria
 
-- `js/app.js`: inicializa a aplicacao publica, navegacao, tema, animacoes, FAQ, KNOW Hub e widgets.
-- `js/quiz.js`: controla o quiz vocacional, pontuacao por perfil e recomendacao final.
-- `js/scratchcard.js`: controla a raspadinha, cooldown diario e premio associado ao lead.
-- `js/leads.js`: valida e salva leads no `localStorage` para uso posterior no dashboard da Secretaria.
-- `js/secretaria-dashboard.js`: controla o dashboard dedicado da Secretaria, incluindo visao geral, cursos, pipeline e leads.
+O dashboard possui quatro áreas principais:
+
+- `Visão geral`: saudação do usuário logado, cards de atenção, funil resumido, leads prioritários e indicadores rápidos.
+- `Cursos`: desempenho por curso, comparativos, distribuição de interessados e painel lateral com detalhes do curso selecionado.
+- `Pipeline`: funil operacional de matrículas, leads por etapa, gargalos e conversão por etapa.
+- `Leads`: tabela de leads, filtros, KPIs e painel lateral com resumo do lead selecionado.
+
+O menu inferior da Secretaria possui o atalho `Voltar ao Hub`, que retorna para `index.html#hub`.
+
+## Fonte de Dados
+
+Os leads reais são salvos em `localStorage` usando a chave:
+
+```text
+know_leads
+```
+
+O dashboard permite alternar entre três fontes:
+
+- `Real`: usa somente leads cadastrados pelo formulário.
+- `Mock`: usa dados demonstrativos para apresentação.
+- `Real + mock`: combina dados reais e demonstrativos para manter o painel completo mesmo com poucos cadastros reais.
+
+## Módulos JavaScript
+
+- `js/app.js`: inicializa a página pública, navegação, tema, animações, FAQ, KNOW Hub e widgets.
+- `js/quiz.js`: controla o quiz vocacional, pontuação por perfil e recomendação final.
+- `js/scratchcard.js`: controla a raspadinha, cooldown diário e prêmio associado ao lead.
+- `js/leads.js`: valida e salva leads no `localStorage`.
+- `js/secretaria-dashboard.js`: controla as telas da Secretaria, fontes de dados, seleção de cursos, pipeline e detalhe de leads.
 
 ## Estilos CSS
 
 - `css/variables.css`: tokens de cor, fonte, sombras e temas.
 - `css/base.css`: reset visual, tipografia base e componentes globais.
 - `css/layout.css`: estrutura da landing page.
-- `css/courses.css`: secoes e cards relacionados aos cursos no site publico.
-- `css/widgets.css`: KNOW Hub, quiz, raspadinha e formulario.
-- `css/secretaria.css`: dashboard dedicado da Secretaria.
-
-## Fonte de Dados
-
-Os leads reais sao salvos em `localStorage` usando a chave:
-
-```text
-know_leads
-```
-
-O dashboard da Secretaria possui tres modos:
-
-- `Real`: usa somente leads cadastrados pelo formulario.
-- `Mock`: usa uma base demonstrativa para apresentacao.
-- `Real + mock`: combina dados reais e demonstrativos para manter graficos legiveis quando ha poucos cadastros reais.
+- `css/courses.css`: seções e cards relacionados aos cursos no site público.
+- `css/widgets.css`: KNOW Hub, quiz, raspadinha e formulário.
+- `css/secretaria.css`: layout e componentes do dashboard da Secretaria.
 
 ## Como Abrir
 
-Nao ha build, framework ou servidor obrigatorio.
+Não há build, framework ou servidor obrigatório.
 
 Abra diretamente:
 
@@ -77,7 +92,7 @@ Para acessar o painel da Secretaria:
 secretaria.html
 ```
 
-Tambem e possivel navegar para a Secretaria pelo modulo do Hub no site principal.
+Também é possível navegar para a Secretaria pelo módulo do Hub no site principal.
 
 ## Estrutura de Pastas
 
@@ -92,6 +107,10 @@ Tambem e possivel navegar para a Secretaria pelo modulo do Hub no site principal
 |   |-- logo-icon.svg
 |   |-- logo.svg
 |   `-- previews/
+|       |-- secretaria-01-overview.png
+|       |-- secretaria-02-courses.png
+|       |-- secretaria-03-pipeline.png
+|       `-- secretaria-04-leads.png
 |-- css/
 |   |-- variables.css
 |   |-- base.css
@@ -110,15 +129,15 @@ Tambem e possivel navegar para a Secretaria pelo modulo do Hub no site principal
 ## Paleta Principal
 
 - Fundo principal: `#0a0f0d`
-- Fundo secundario: `#111a16`
+- Fundo secundário: `#111a16`
 - Verde profundo: `#146E51`
 - Verde mint: `#55CB96`
 - Texto principal: `#f0f4f2`
-- Texto secundario: `#a3b3ac`
-- Informatica: `#00b4d8`
+- Texto secundário: `#a3b3ac`
+- Informática: `#00b4d8`
 - Enfermagem: `#ff4d6d`
-- Administracao: `#ffb703`
+- Administração: `#ffb703`
 
-## Observacao para Apresentacao
+## Observação para Apresentação
 
-Este projeto foi construindo como um prototipo de alta fidelidade em HTML, CSS e JavaScript puro. A decisao evita dependencia de build e facilita demonstracao em contexto academico, mas tambem significa que modulos grandes, como `secretaria-dashboard.js`, podem ser futuramente divididos em arquivos menores caso o projeto evolua.
+Este projeto foi construído como um protótipo de alta fidelidade em HTML, CSS e JavaScript puro. A decisão evita dependência de build e facilita a demonstração em contexto acadêmico, mas também significa que módulos grandes, como `secretaria-dashboard.js`, podem ser futuramente divididos em arquivos menores caso o projeto evolua.

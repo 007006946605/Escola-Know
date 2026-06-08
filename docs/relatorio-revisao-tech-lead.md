@@ -1,57 +1,69 @@
-# Relatorio de Revisao Tecnica - Colegio Tecnico KNOW
+# Relatório de Revisão Técnica - Colégio Técnico KNOW
 
 ## Estrutura Geral do Projeto
 
-O projeto e uma aplicacao web estatica organizada em duas paginas principais:
+O projeto é uma aplicação web estática organizada em duas páginas principais:
 
-- `index.html`: pagina publica institucional. Apresenta a escola, os cursos, a matriz curricular, FAQ, KNOW Hub, quiz vocacional, raspadinha de evento e formulario de captacao.
-- `secretaria.html`: painel dedicado da Secretaria. Reune metricas, funil, cursos, pipeline e tabela de leads para demonstrar como os cadastros podem virar uma rotina administrativa.
+- `index.html`: página pública institucional. Apresenta a escola, os cursos, a matriz curricular, o FAQ, o KNOW Hub, o quiz vocacional, a raspadinha de eventos e o formulário de captação.
+- `secretaria.html`: painel dedicado da Secretaria. Reúne métricas, cursos, pipeline e tabela de leads para demonstrar como os cadastros podem virar uma rotina administrativa.
 
-A separacao por pastas e direta:
+A separação por pastas é direta:
 
 - `assets/`: identidade visual, logos e imagens de preview.
 - `css/`: estilos separados por responsabilidade visual.
 - `js/`: controladores JavaScript separados por funcionalidade.
-- `docs/`: materiais de apoio para apresentacao e avaliacao tecnica.
+- `docs/`: materiais de apoio para apresentação e avaliação técnica.
 
-### Principais Modulos e Responsabilidades
+### Principais Módulos e Responsabilidades
 
 `js/app.js`
 
-Responsavel por inicializar a experiencia publica. Ele centraliza tema, navegacao, animacoes, FAQ, KNOW Hub, widgets e captura de leads. Funciona como o orquestrador da pagina principal.
+Responsável por inicializar a experiência pública. Ele centraliza tema, navegação, animações, FAQ, KNOW Hub, widgets e captura de leads. Funciona como o orquestrador da página principal.
 
 `js/quiz.js`
 
-Responsavel pelo quiz vocacional. Mantem o banco de perguntas, controla progresso, pontuacao por perfil e resultado final. Tambem salva o resultado no armazenamento local.
+Responsável pelo quiz vocacional. Mantém o banco de perguntas, controla progresso, pontuação por perfil e resultado final. Também salva o resultado no armazenamento local.
 
 `js/scratchcard.js`
 
-Responsavel pela raspadinha promocional. Controla o sorteio de premio, a camada de canvas raspavel, o cooldown diario e o premio associado ao lead.
+Responsável pela raspadinha promocional. Controla o sorteio de prêmio, a camada de canvas raspável, o cooldown diário e o prêmio associado ao lead.
 
 `js/leads.js`
 
-Responsavel pelo formulario de captacao. Valida campos, salva leads em `localStorage` e mostra a tela de sucesso apos o envio.
+Responsável pelo formulário de captação. Valida campos, salva leads em `localStorage` e mostra a tela de sucesso após o envio.
 
 `js/secretaria-dashboard.js`
 
-Responsavel pelo painel dedicado da Secretaria. Le leads reais, combina dados demonstrativos quando necessario e renderiza quatro areas: visao geral, cursos, pipeline e leads.
+Responsável pelo painel dedicado da Secretaria. Lê leads reais, combina dados demonstrativos quando necessário e renderiza quatro áreas: visão geral, cursos, pipeline e leads.
 
 ### Fluxo Geral de Funcionamento
 
-1. O usuario acessa `index.html`.
-2. O script `app.js` inicializa navegacao, tema, animacoes e widgets.
-3. No KNOW Hub, o usuario pode responder ao quiz ou usar a raspadinha.
-4. O resultado do quiz e o premio da raspadinha podem influenciar a jornada ate o formulario.
-5. O formulario salva o lead em `localStorage` pela chave `know_leads`.
+1. O usuário acessa `index.html`.
+2. O script `app.js` inicializa navegação, tema, animações e widgets.
+3. No KNOW Hub, o usuário pode responder ao quiz ou usar a raspadinha.
+4. O resultado do quiz e o prêmio da raspadinha podem influenciar a jornada até o formulário.
+5. O formulário salva o lead em `localStorage` pela chave `know_leads`.
 6. A Secretaria acessa `secretaria.html`.
-7. O dashboard le os leads reais e permite alternar entre `Real`, `Mock` e `Real + mock`.
-8. O painel exibe metricas, cursos, pipeline e detalhe de leads.
+7. O dashboard lê os leads reais e permite alternar entre `Real`, `Mock` e `Real + mock`.
+8. O painel exibe métricas, cursos, pipeline e detalhes de leads.
 
 ## Melhorias Aplicadas
 
-### Nomenclatura mais clara no dashboard da Secretaria
+### Dashboard dedicado da Secretaria
 
-Foram substituidos nomes internos genericos por nomes mais descritivos em `js/secretaria-dashboard.js`.
+O painel administrativo antigo dentro do Hub foi substituído por uma página própria em `secretaria.html`. Essa decisão melhora a apresentação do projeto porque separa a experiência pública do visitante da experiência operacional da Secretaria.
+
+A tela atual possui:
+
+- saudação do usuário logado como `Xiru`;
+- navegação lateral com `Visão geral`, `Cursos`, `Pipeline` e `Leads`;
+- seletor de fonte de dados (`Real`, `Mock` e `Real + mock`);
+- cards de atenção, funil resumido, tabela de leads e painéis laterais de detalhe;
+- atalho `Voltar ao Hub` para retornar ao site público.
+
+### Nomenclatura mais clara no dashboard
+
+Foram substituídos nomes internos genéricos por nomes mais descritivos em `js/secretaria-dashboard.js`.
 
 Exemplos:
 
@@ -65,53 +77,50 @@ Exemplos:
 - `currentSource` virou `activeDataSource`.
 - `resolveRows()` virou `resolveVisibleLeads()`.
 
-Esses nomes reduzem a necessidade de contexto mental. Um avaliador consegue entender mais rapidamente que os dados exibidos no dashboard sao leads ativos, que existem leads demonstrativos e que a fonte atual pode ser alternada.
+Esses nomes reduzem a necessidade de contexto mental. Um avaliador consegue entender mais rapidamente que os dados exibidos no dashboard são leads ativos, que existem leads demonstrativos e que a fonte atual pode ser alternada.
 
-### Comentario arquitetural pontual
+### Comentário arquitetural pontual
 
-Foi adicionado um comentario no topo de `js/secretaria-dashboard.js` explicando a decisao de produto por tras dos modos de dados:
+Foi adicionado um comentário no topo de `js/secretaria-dashboard.js` explicando a decisão de produto por trás dos modos de dados:
 
-- `Real`: somente leads do formulario.
-- `Mock`: cenario demonstrativo.
-- `Real + mock`: combinacao para apresentacao quando a base real ainda e pequena.
+- `Real`: somente leads do formulário.
+- `Mock`: cenário demonstrativo.
+- `Real + mock`: combinação para apresentação quando a base real ainda é pequena.
 
-Esse comentario agrega valor porque explica uma regra de negocio que nao e obvia apenas lendo as funcoes.
+Esse comentário agrega valor porque explica uma regra de negócio que não é óbvia apenas lendo as funções.
 
 ### README reestruturado
 
-O `README.md` foi reescrito com foco em apresentacao:
+O `README.md` foi reescrito com foco em apresentação:
 
 - objetivo do projeto;
-- paginas principais;
-- responsabilidades dos modulos JavaScript;
+- previews atuais do dashboard;
+- páginas principais;
+- responsabilidades dos módulos JavaScript;
 - responsabilidades dos arquivos CSS;
 - fonte de dados;
-- instrucoes de abertura;
+- instruções de abertura;
 - estrutura de pastas;
 - paleta principal;
-- observacao tecnica sobre a escolha de HTML, CSS e JavaScript puro.
+- observação técnica sobre a escolha de HTML, CSS e JavaScript puro.
 
-Essa organizacao facilita a leitura por professores, recrutadores e outros desenvolvedores.
+Essa organização facilita a leitura por professores, recrutadores e outros desenvolvedores.
 
-### Relatorio tecnico dedicado
-
-Foi criado este documento em `docs/relatorio-revisao-tech-lead.md`, separando a explicacao tecnica do README. O README fica como guia rapido; o relatorio serve como material de apresentacao e defesa tecnica.
-
-## Pontos que Ainda Merecem Atencao
+## Pontos que Ainda Merecem Atenção
 
 ### Dividir `secretaria-dashboard.js`
 
-O arquivo ainda concentra varias responsabilidades:
+O arquivo ainda concentra várias responsabilidades:
 
 - dados demonstrativos;
-- normalizacao de leads;
-- renderizacao da visao geral;
-- renderizacao de cursos;
-- renderizacao do pipeline;
-- renderizacao da tabela e detalhe de leads;
-- eventos de navegacao e filtros.
+- normalização de leads;
+- renderização da visão geral;
+- renderização de cursos;
+- renderização do pipeline;
+- renderização da tabela e do detalhe de leads;
+- eventos de navegação e filtros.
 
-Para uma proxima etapa, seria melhor separar em arquivos como:
+Para uma próxima etapa, seria melhor separar em arquivos como:
 
 - `secretaria-data.js`
 - `secretaria-overview.js`
@@ -120,78 +129,74 @@ Para uma proxima etapa, seria melhor separar em arquivos como:
 - `secretaria-leads.js`
 - `secretaria-dom-utils.js`
 
-Essa divisao aumentaria a manutencao e deixaria cada arquivo com uma responsabilidade mais clara.
+Essa divisão aumentaria a manutenibilidade e deixaria cada arquivo com uma responsabilidade mais clara.
 
-### Separar dados mock de codigo de UI
+### Separar dados mock do código de UI
 
-Os dados demonstrativos de cursos, pipeline e leads ainda ficam dentro do mesmo arquivo que renderiza a interface. Para um projeto maior, esses dados deveriam ir para um arquivo proprio, por exemplo `js/data/secretaria-demo-data.js`.
-
-### Padronizar acentuacao e codificacao
-
-O projeto usa bastante texto em portugues. E importante garantir que todos os arquivos estejam salvos em UTF-8 e que os textos aparecam corretamente em todos os ambientes. Em contexto academico, isso evita que caracteres acentuados sejam exibidos como texto quebrado.
+Os dados demonstrativos de cursos, pipeline e leads ainda ficam dentro do mesmo arquivo que renderiza a interface. Para um projeto maior, esses dados deveriam ir para um arquivo próprio, por exemplo `js/data/secretaria-demo-data.js`.
 
 ### Reduzir HTML gerado por template string
 
-Os modulos JavaScript renderizam bastante HTML por template string. Isso funciona em um projeto estatico, mas pode dificultar manutencao quando a interface cresce. Uma evolucao possivel seria criar helpers de componentes ou migrar para uma estrutura com framework leve.
+Os módulos JavaScript renderizam bastante HTML por template string. Isso funciona em um projeto estático, mas pode dificultar a manutenção quando a interface cresce. Uma evolução possível seria criar helpers de componentes ou migrar para uma estrutura com framework leve.
 
 ### Criar testes manuais documentados
 
-O projeto ainda se beneficia de um roteiro de validacao para apresentacao:
+O projeto ainda se beneficia de um roteiro de validação para apresentação:
 
-- responder quiz;
-- revelar raspadinha;
-- enviar lead;
-- abrir secretaria;
+- responder ao quiz;
+- revelar a raspadinha;
+- enviar um lead;
+- abrir a Secretaria;
 - alternar fontes de dados;
-- clicar em curso;
-- clicar em lead;
+- clicar em um curso;
+- clicar em um lead;
 - navegar pelo pipeline.
 
-Esse roteiro ajudaria qualquer avaliador a validar o fluxo sem depender de explicacao oral.
+Esse roteiro ajudaria qualquer avaliador a validar o fluxo sem depender de explicação oral.
 
-## Uso de IA como Ferramenta de Co-criacao
+## Uso de IA como Ferramenta de Cocriação
 
-### Refinamento visual do Hero e da Identidade
-
-Problema ou desafio:
-
-Criar um hero com identidade visual propria, mantendo o simbolo da marca e adicionando interacoes sem deixar a interface exagerada.
-
-Como a IA poderia auxiliar:
-
-A IA pode sugerir alternativas de composicao, microinteracoes, animacoes de entrada e ajustes de hover com base em referencias visuais.
-
-Papel humano:
-
-O humano define a direcao visual, aponta problemas percebidos, rejeita excessos e decide o que combina com a identidade do colegio.
-
-Por que e co-criacao:
-
-O resultado nasce de iteracoes: a IA propoe e implementa possibilidades, enquanto o humano avalia, corrige, prioriza e direciona o nivel de sofisticao.
-
-### KNOW Hub com Quiz, Raspadinha e Captacao
+### Refinamento visual do Hero e da identidade
 
 Problema ou desafio:
 
-Transformar uma landing page comum em uma experiencia interativa capaz de capturar interesse de forma mais envolvente.
+Criar um hero com identidade visual própria, mantendo o símbolo da marca e adicionando interações sem deixar a interface exagerada.
 
 Como a IA poderia auxiliar:
 
-A IA pode ajudar a estruturar perguntas do quiz, estados da raspadinha, fluxo de formulario e mensagens de transicao.
+A IA pode sugerir alternativas de composição, microinterações, animações de entrada e ajustes de hover com base em referências visuais.
 
 Papel humano:
 
-O humano decide quais experiencias fazem sentido para o contexto escolar e ajusta o nivel de complexidade para caber no projeto.
+O humano define a direção visual, aponta problemas percebidos, rejeita excessos e decide o que combina com a identidade do colégio.
 
-Por que e co-criacao:
+Por que é cocriação:
 
-A IA acelera a prototipacao de interacoes, mas a intencao pedagogica e a decisao sobre o fluxo final dependem de julgamento humano.
+O resultado nasce de iterações: a IA propõe e implementa possibilidades, enquanto o humano avalia, corrige, prioriza e direciona o nível de sofisticação.
+
+### KNOW Hub com quiz, raspadinha e captação
+
+Problema ou desafio:
+
+Transformar uma landing page comum em uma experiência interativa capaz de capturar interesse de forma mais envolvente.
+
+Como a IA poderia auxiliar:
+
+A IA pode ajudar a estruturar perguntas do quiz, estados da raspadinha, fluxo de formulário e mensagens de transição.
+
+Papel humano:
+
+O humano decide quais experiências fazem sentido para o contexto escolar e ajusta o nível de complexidade para caber no projeto.
+
+Por que é cocriação:
+
+A IA acelera a prototipação de interações, mas a intenção pedagógica e a decisão sobre o fluxo final dependem de julgamento humano.
 
 ### Painel da Secretaria
 
 Problema ou desafio:
 
-Criar uma tela administrativa compreensivel mesmo com poucos dados reais, mantendo valor demonstrativo para apresentacao.
+Criar uma tela administrativa compreensível mesmo com poucos dados reais, mantendo valor demonstrativo para apresentação.
 
 Como a IA poderia auxiliar:
 
@@ -199,40 +204,40 @@ A IA pode propor dashboards, organizar KPIs, simular dados, sugerir funis e cons
 
 Papel humano:
 
-O humano valida o que parece util para uma secretaria real, pede novas abas, remove acoes desnecessarias e ajusta o comportamento esperado.
+O humano valida o que parece útil para uma secretaria real, pede novas abas, remove ações desnecessárias e ajusta o comportamento esperado.
 
-Por que e co-criacao:
+Por que é cocriação:
 
-O modo `Real + mock` e uma decisao de apresentacao: dados reais sao preservados, mas dados demonstrativos completam o painel. A IA apoia a implementacao, enquanto o humano define a necessidade comunicacional.
+O modo `Real + mock` é uma decisão de apresentação: dados reais são preservados, mas dados demonstrativos completam o painel. A IA apoia a implementação, enquanto o humano define a necessidade comunicacional.
 
-### Refatoracao e Clareza para Apresentacao
+### Refatoração e clareza para apresentação
 
 Problema ou desafio:
 
-Um projeto visualmente rico pode ficar dificil de explicar se nomes, arquivos e responsabilidades nao forem claros.
+Um projeto visualmente rico pode ficar difícil de explicar se nomes, arquivos e responsabilidades não forem claros.
 
 Como a IA poderia auxiliar:
 
-A IA pode atuar como revisora tecnica, identificar nomes ambiguos, sugerir organizacao e gerar documentacao de apoio.
+A IA pode atuar como revisora técnica, identificar nomes ambíguos, sugerir organização e gerar documentação de apoio.
 
 Papel humano:
 
-O humano define o publico da apresentacao, o nivel de detalhe esperado e quais compromissos sao aceitaveis entre refatorar tudo ou preservar estabilidade.
+O humano define o público da apresentação, o nível de detalhe esperado e quais compromissos são aceitáveis entre refatorar tudo ou preservar estabilidade.
 
-Por que e co-criacao:
+Por que é cocriação:
 
-A IA nao substitui a avaliacao tecnica. Ela ajuda a tornar explicitas as decisoes, mas o humano continua responsavel por escopo, criterios de qualidade e narrativa final.
+A IA não substitui a avaliação técnica. Ela ajuda a tornar explícitas as decisões, mas o humano continua responsável por escopo, critérios de qualidade e narrativa final.
 
 ## Parecer de Tech Lead
 
-O projeto comunica bem a proposta de um colegio tecnico moderno e tem uma jornada completa, do visitante ao painel administrativo. Para apresentacao, os pontos mais fortes sao:
+O projeto comunica bem a proposta de um colégio técnico moderno e tem uma jornada completa, do visitante ao painel administrativo. Para apresentação, os pontos mais fortes são:
 
-- fluxo completo de captacao;
-- experiencias interativas no Hub;
+- fluxo completo de captação;
+- experiências interativas no Hub;
 - dashboard dedicado da Secretaria;
 - uso claro de dados reais e mock;
 - identidade visual consistente.
 
-O principal risco tecnico e a concentracao de responsabilidades nos arquivos maiores, especialmente `secretaria-dashboard.js` e `secretaria.css`. Isso nao impede a apresentacao, mas deve ser explicado como uma limitacao natural de um prototipo estatico que evoluiu bastante visualmente.
+O principal risco técnico é a concentração de responsabilidades nos arquivos maiores, especialmente `secretaria-dashboard.js` e `secretaria.css`. Isso não impede a apresentação, mas deve ser explicado como uma limitação natural de um protótipo estático que evoluiu bastante visualmente.
 
-A recomendacao e apresentar o projeto como um prototipo funcional de alta fidelidade, destacando que a proxima etapa tecnica seria modularizar o dashboard e transformar os dados demonstrativos em uma camada separada.
+A recomendação é apresentar o projeto como um protótipo funcional de alta fidelidade, destacando que a próxima etapa técnica seria modularizar o dashboard e transformar os dados demonstrativos em uma camada separada.
