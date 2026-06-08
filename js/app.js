@@ -279,15 +279,6 @@ function initDashboardShell() {
   // Instances of widget controllers
   let quizInstance = null;
   let scratchcardInstance = null;
-  let leadsInstance = null;
-
-  const getLeadsInstance = () => {
-    if (!leadsInstance) {
-      leadsInstance = window.KNOWLeadsManager || new window.LeadsManager();
-      window.KNOWLeadsManager = leadsInstance;
-    }
-    return leadsInstance;
-  };
 
   const bootstrapWidget = (paneId) => {
     if (paneId === 'quiz-pane') {
@@ -304,9 +295,6 @@ function initDashboardShell() {
         clearInterval(scratchcardInstance.timerInterval);
       }
       scratchcardInstance.init();
-    } else if (paneId === 'admin-pane') {
-      // Secretary Admin uses the same LeadsManager instance
-      getLeadsInstance().renderAdminBoard();
     }
   };
 
