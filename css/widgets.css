@@ -1082,6 +1082,280 @@
   justify-self: center;
 }
 
+/* Raspadinha 3x3: grade com tres tentativas */
+.scratch-playable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.scratch-eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.55rem;
+  color: var(--brand-mint);
+  font-family: var(--font-headings);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.scratch-card-wrapper {
+  width: min(430px, calc(100vw - 44px));
+  height: auto;
+  aspect-ratio: 1;
+  padding: 12px;
+  border-radius: 28px;
+  border: 1px solid rgba(85, 203, 150, 0.24);
+  border-style: solid;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(85, 203, 150, 0.18), transparent 58%),
+    linear-gradient(145deg, rgba(10, 35, 28, 0.94), rgba(5, 13, 11, 0.98));
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.scratch-card-wrapper::after {
+  border-radius: inherit;
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.48);
+}
+
+.scratch-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.scratch-cell {
+  appearance: none;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(85, 203, 150, 0.2);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(85, 203, 150, 0.18), transparent 70%),
+    rgba(8, 20, 16, 0.88);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: crosshair;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 24px rgba(0, 0, 0, 0.16);
+  transition:
+    border-color var(--transition-normal),
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.scratch-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: translateX(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scratch-cell:hover {
+  transform: translateY(-2px);
+  border-color: rgba(85, 203, 150, 0.42);
+}
+
+.scratch-cell.is-revealed {
+  border-color: rgba(85, 203, 150, 0.58);
+  box-shadow:
+    0 0 0 1px rgba(85, 203, 150, 0.12),
+    0 14px 30px rgba(0, 0, 0, 0.22),
+    inset 0 0 24px rgba(85, 203, 150, 0.08);
+}
+
+.scratch-cell.is-revealed::after {
+  animation: scratchCellSweep 520ms ease forwards;
+}
+
+@keyframes scratchCellSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+
+.scratch-cell-prize {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem;
+  text-align: center;
+}
+
+.scratch-cell-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--brand-mint);
+}
+
+.scratch-cell-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(85, 203, 150, 0.2));
+}
+
+.scratch-cell-prize strong {
+  color: var(--text-primary);
+  font-family: var(--font-headings);
+  font-size: clamp(0.7rem, 1.5vw, 0.86rem);
+  line-height: 1.08;
+}
+
+.scratch-cell-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: crosshair;
+  transition:
+    opacity 520ms ease,
+    transform 520ms ease,
+    filter 520ms ease;
+  touch-action: none;
+}
+
+.scratch-dust {
+  position: absolute;
+  z-index: 12;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(199, 255, 228, 0.86);
+  box-shadow: 0 0 12px rgba(85, 203, 150, 0.45);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: scratchDust 560ms ease-out forwards;
+}
+
+@keyframes scratchDust {
+  to {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--dust-x)), calc(-50% + var(--dust-y)))
+      scale(0.25);
+  }
+}
+
+.scratch-result {
+  width: min(430px, calc(100vw - 44px));
+  min-height: 104px;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(85, 203, 150, 0.16);
+  border-radius: 18px;
+  background: rgba(7, 17, 14, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    border-color var(--transition-normal),
+    background var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.scratch-result-kicker {
+  color: var(--brand-mint);
+  font-family: var(--font-headings);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scratch-result strong {
+  color: var(--text-primary);
+  font-family: var(--font-headings);
+  font-size: 1.25rem;
+}
+
+.scratch-result p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.scratch-result.is-winning {
+  border-color: rgba(85, 203, 150, 0.55);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(85, 203, 150, 0.2), transparent 70%),
+    rgba(8, 28, 21, 0.84);
+  transform: translateY(-2px);
+}
+
+.scratch-result.is-empty {
+  border-color: rgba(255, 183, 3, 0.28);
+}
+
+.scratch-win {
+  animation: scratchWinPulse 900ms ease-in-out infinite alternate;
+}
+
+.scratch-loss {
+  border-color: rgba(255, 183, 3, 0.28);
+}
+
+@keyframes scratchWinPulse {
+  from {
+    box-shadow:
+      0 24px 54px rgba(0, 0, 0, 0.32),
+      0 0 16px rgba(85, 203, 150, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  to {
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.38),
+      0 0 34px rgba(85, 203, 150, 0.45),
+      inset 0 0 28px rgba(85, 203, 150, 0.14);
+  }
+}
+
+.dashboard-window.is-immersive .scratch-card-wrapper {
+  width: min(440px, 34vw);
+  height: auto;
+}
+
+.dashboard-window.is-immersive .scratch-result,
+.dashboard-window.is-immersive #scratch-actions-area {
+  grid-column: 2;
+  justify-self: center;
+}
+
 /* ==========================================================================
    WIDGET 3: CAPTURA DE LEADS (CADASTRO)
    ========================================================================== */
