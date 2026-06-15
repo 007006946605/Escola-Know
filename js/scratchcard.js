@@ -4,28 +4,28 @@ const OFFICIAL_PRIZES = [
   {
     text: "Camiseta Exclusiva Colegio KNOW",
     shortLabel: "Camiseta",
-    icon: '<svg viewBox="0 0 24 24"><path d="M20.4 3.5 16 6.1V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2.1L3.6 3.5 1.2 6l3.4 5.8H8V20h8v-8.2h3.4L22.8 6z"/></svg>'
+    icon: '<svg viewBox="0 0 24 24"><path d="M20.4 3.5 16 6.1V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2.1L3.6 3.5 1.2 6l3.4 5.8H8V20h8v-8.2h3.4L22.8 6z"/></svg>',
   },
   {
     text: "Caneta e Bloco de Notas Ecologico",
     shortLabel: "Kit Notas",
-    icon: '<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>'
+    icon: '<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
   },
   {
     text: "Isencao da Taxa de Matricula",
     shortLabel: "Taxa Free",
-    icon: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 8v8M12 8v8M16 8v8"/></svg>'
+    icon: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 8v8M12 8v8M16 8v8"/></svg>',
   },
   {
     text: "Desconto de 10% na Primeira Mensalidade",
     shortLabel: "10% OFF",
-    icon: '<svg viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>'
+    icon: '<svg viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>',
   },
   {
     text: "Ingresso VIP para a Feira Tech KNOW",
     shortLabel: "VIP Tech",
-    icon: '<svg viewBox="0 0 24 24"><path d="M4.5 16.5C3 17.8 2 20 2 20s2.3-1 3.5-2.5L13 10l-3-3z"/><path d="m13 10 9-9-3 3-5 5z"/></svg>'
-  }
+    icon: '<svg viewBox="0 0 24 24"><path d="M2 4 5 12h14l3-8-7 4-3-6-3 6-7-4z"/><path d="M5 20h14"/></svg>',
+  },
 ];
 
 class ScratchcardManager {
@@ -49,14 +49,14 @@ class ScratchcardManager {
   }
 
   init() {
-    this.wrapper = document.getElementById('scratch-card-app');
+    this.wrapper = document.getElementById("scratch-card-app");
     if (!this.wrapper) return;
 
     this.checkCooldown();
   }
 
   checkCooldown() {
-    const lastScratchTime = SafeStorage.getItem('know_last_scratch');
+    const lastScratchTime = SafeStorage.getItem("know_last_scratch");
 
     if (lastScratchTime) {
       const timeElapsed = Date.now() - parseInt(lastScratchTime, 10);
@@ -86,26 +86,31 @@ class ScratchcardManager {
           </div>
           <p class="locked-text">Nova tentativa disponivel em</p>
           <div class="locked-timer" id="scratch-cooldown-clock">24:00:00</div>
-          <span class="locked-note">Enquanto isso, voce pode seguir para a matricula e garantir seu atendimento.</span>
+          <span class="locked-note">Enquanto isso, voce pode seguir para o formulário e garantir seu atendimento.</span>
           <button class="btn btn-primary" id="btn-scratch-redirect-leads">
-            <span>Ir para Matricula</span>
+            <span>Ir para o formulário</span>
           </button>
         </div>
       </div>
     `;
 
-    document.getElementById('btn-scratch-redirect-leads').addEventListener('click', () => {
-      const enrollmentSection = document.getElementById('matricula');
-      if (enrollmentSection) {
-        enrollmentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+    document
+      .getElementById("btn-scratch-redirect-leads")
+      .addEventListener("click", () => {
+        const enrollmentSection = document.getElementById("matricula");
+        if (enrollmentSection) {
+          enrollmentSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
 
     this.startCooldownTimer(remainingMs);
   }
 
   startCooldownTimer(durationMs) {
-    const clock = document.getElementById('scratch-cooldown-clock');
+    const clock = document.getElementById("scratch-cooldown-clock");
     if (!clock) return;
 
     let remaining = Math.floor(durationMs / 1000);
@@ -117,9 +122,13 @@ class ScratchcardManager {
         return;
       }
 
-      const hrs = Math.floor(remaining / 3600).toString().padStart(2, '0');
-      const mins = Math.floor((remaining % 3600) / 60).toString().padStart(2, '0');
-      const secs = (remaining % 60).toString().padStart(2, '0');
+      const hrs = Math.floor(remaining / 3600)
+        .toString()
+        .padStart(2, "0");
+      const mins = Math.floor((remaining % 3600) / 60)
+        .toString()
+        .padStart(2, "0");
+      const secs = (remaining % 60).toString().padStart(2, "0");
 
       clock.innerText = `${hrs}:${mins}:${secs}`;
       remaining--;
@@ -138,26 +147,26 @@ class ScratchcardManager {
     this.wrapper.innerHTML = `
       <div class="scratch-playable widget-animate">
         <div class="scratch-header">
-          <span class="scratch-eyebrow">3 tentativas</span>
-          <h3>Raspe 3 casas</h3>
-          <p>Escolha bem: se as 3 casas reveladas forem iguais, voce ganha o brinde. Se nao combinar, a tentativa acaba.</p>
+          <span class="scratch-eyebrow">Ative seu cupom</span>
+          <h3>Raspe as casas</h3>
+          <p>Revele as casas para encontrar 3 símbolos de prêmio idênticos. Se você os achar, você ganha!</p>
         </div>
 
         <div class="scratch-card-wrapper" id="scratch-card-wrapper">
           <div class="scratch-grid" aria-label="Cartela de raspadinha com 9 casas">
-            ${this.boardCells.map((cell, index) => this.renderScratchCell(cell, index)).join('')}
+            ${this.boardCells.map((cell, index) => this.renderScratchCell(cell, index)).join("")}
           </div>
         </div>
 
         <div class="scratch-result" id="scratch-result" aria-live="polite">
-          <span class="scratch-result-kicker">Tentativas restantes: 3</span>
-          <strong>Raspe uma casa</strong>
-          <p>Arraste sobre uma das casas para revelar o simbolo escondido.</p>
+          <span class="scratch-result-kicker">Casas Reveladas</span>
+          <strong>Comece a raspar</strong>
+          <p>Arraste o cursor sobre as casas para revelar os prêmios escondidos.</p>
         </div>
 
         <div id="scratch-actions-area" style="opacity: 0; pointer-events: none; transition: opacity var(--transition-normal);">
           <button class="btn btn-primary" id="btn-scratch-redeem">
-            <span>Ir para Matricula</span>
+            <span>Ir para o formulário</span>
           </button>
         </div>
       </div>
@@ -179,43 +188,66 @@ class ScratchcardManager {
   }
 
   createPrizeBoard() {
-    const winningPrize = OFFICIAL_PRIZES[Math.floor(Math.random() * OFFICIAL_PRIZES.length)];
-    const board = [winningPrize, winningPrize, winningPrize];
+    // 50% de chance de haver um prêmio nesta rodada
+    const hasPrize = Math.random() < 0.5;
+    const board = Array(9).fill(null);
 
-    while (board.length < 9) {
-      const nextPrize = OFFICIAL_PRIZES[Math.floor(Math.random() * OFFICIAL_PRIZES.length)];
-      const currentCount = board.filter(item => item.text === nextPrize.text).length;
+    if (!hasPrize) {
+    }
 
-      if (nextPrize.text !== winningPrize.text && currentCount < 2) {
-        board.push(nextPrize);
+    const winningPrize =
+      OFFICIAL_PRIZES[Math.floor(Math.random() * OFFICIAL_PRIZES.length)];
+
+    // Posiciona o prêmio vencedor em 3 posições aleatórias distintas
+    const indices = [];
+    while (indices.length < 3) {
+      const idx = Math.floor(Math.random() * 9);
+      if (!indices.includes(idx)) {
+        indices.push(idx);
       }
     }
 
-    return board.sort(() => Math.random() - 0.5);
+    indices.forEach((idx) => {
+      board[idx] = winningPrize;
+    });
+
+    // Preenche as outras 6 casas como vazias (Tente de Novo)
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === null) {
+        board[i] = {
+          text: "Não foi dessa vez!",
+          shortLabel: "Tente de Novo",
+          icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>',
+          isEmpty: true,
+        };
+      }
+    }
+
+    return board;
   }
 
   prepareCellCanvases() {
-    const canvases = this.wrapper.querySelectorAll('.scratch-cell-canvas');
+    const canvases = this.wrapper.querySelectorAll(".scratch-cell-canvas");
 
     canvases.forEach((canvas) => {
       this.paintScratchLayer(canvas);
-      canvas.addEventListener('pointerdown', this.handlePointerDown);
-      canvas.addEventListener('pointermove', this.handlePointerMove);
+      canvas.addEventListener("pointerdown", this.handlePointerDown);
+      canvas.addEventListener("pointermove", this.handlePointerMove);
     });
 
-    window.addEventListener('pointerup', this.handlePointerUp);
+    window.addEventListener("pointerup", this.handlePointerUp);
   }
 
   paintScratchLayer(canvas) {
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
     const w = canvas.width;
     const h = canvas.height;
 
     const gradient = ctx.createLinearGradient(0, 0, w, h);
-    gradient.addColorStop(0, '#55CB96');
-    gradient.addColorStop(0.28, '#1c8b65');
-    gradient.addColorStop(0.62, '#146E51');
-    gradient.addColorStop(1, '#07110e');
+    gradient.addColorStop(0, "#55CB96");
+    gradient.addColorStop(0.28, "#1c8b65");
+    gradient.addColorStop(0.62, "#146E51");
+    gradient.addColorStop(1, "#07110e");
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, w, h);
@@ -224,7 +256,7 @@ class ScratchcardManager {
     ctx.globalAlpha = 0.28;
     for (let y = -h; y < h; y += 12) {
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      ctx.strokeStyle = "rgba(255,255,255,0.22)";
       ctx.lineWidth = 1;
       ctx.moveTo(0, y);
       ctx.lineTo(w, y + w);
@@ -232,7 +264,7 @@ class ScratchcardManager {
     }
     ctx.restore();
 
-    ctx.fillStyle = 'rgba(7, 17, 14, 0.32)';
+    ctx.fillStyle = "rgba(7, 17, 14, 0.32)";
     for (let x = 10; x < w; x += 16) {
       for (let y = 10; y < h; y += 16) {
         ctx.beginPath();
@@ -241,17 +273,17 @@ class ScratchcardManager {
       }
     }
 
-    ctx.font = '800 15px Outfit, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = 'rgba(7, 17, 14, 0.84)';
-    ctx.fillText('RASPE', w / 2, h / 2 - 7);
+    ctx.font = "800 15px Outfit, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "rgba(7, 17, 14, 0.84)";
+    ctx.fillText("RASPE", w / 2, h / 2 - 7);
 
-    ctx.font = '700 10px Outfit, sans-serif';
-    ctx.fillStyle = 'rgba(7, 17, 14, 0.68)';
-    ctx.fillText('KNOW', w / 2, h / 2 + 14);
+    ctx.font = "700 10px Outfit, sans-serif";
+    ctx.fillStyle = "rgba(7, 17, 14, 0.68)";
+    ctx.fillText("KNOW", w / 2, h / 2 + 14);
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.24)';
+    ctx.strokeStyle = "rgba(255,255,255,0.24)";
     ctx.lineWidth = 5;
     ctx.strokeRect(2.5, 2.5, w - 5, h - 5);
   }
@@ -259,12 +291,14 @@ class ScratchcardManager {
   handlePointerDown(event) {
     if (this.finished) return;
 
-    const cell = event.target.closest('.scratch-cell');
-    if (!cell || cell.classList.contains('is-revealed')) return;
+    const cell = event.target.closest(".scratch-cell");
+    if (!cell || cell.classList.contains("is-revealed")) return;
 
     event.preventDefault();
     this.activeCanvas = event.target;
-    this.activeContext = this.activeCanvas.getContext('2d', { willReadFrequently: true });
+    this.activeContext = this.activeCanvas.getContext("2d", {
+      willReadFrequently: true,
+    });
     this.activeCellIndex = Number(cell.dataset.cellIndex);
     this.isDrawing = true;
     this.lastCoords = null;
@@ -299,7 +333,7 @@ class ScratchcardManager {
 
     return {
       x: ((event.clientX - rect.left) / rect.width) * canvas.width,
-      y: ((event.clientY - rect.top) / rect.height) * canvas.height
+      y: ((event.clientY - rect.top) / rect.height) * canvas.height,
     };
   }
 
@@ -307,15 +341,15 @@ class ScratchcardManager {
     const ctx = this.activeContext;
     if (!ctx) return;
 
-    ctx.globalCompositeOperation = 'destination-out';
+    ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
     ctx.arc(x, y, 24, 0, Math.PI * 2);
     ctx.fill();
 
     if (!isStart && this.lastCoords) {
       ctx.lineWidth = 48;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
       ctx.beginPath();
       ctx.moveTo(this.lastCoords.x, this.lastCoords.y);
       ctx.lineTo(x, y);
@@ -329,29 +363,40 @@ class ScratchcardManager {
   emitScratchDust(x, y) {
     if (!this.activeCanvas) return;
 
-    const cell = this.activeCanvas.closest('.scratch-cell');
+    const cell = this.activeCanvas.closest(".scratch-cell");
     if (!cell) return;
 
     for (let i = 0; i < 4; i++) {
-      const particle = document.createElement('span');
-      particle.className = 'scratch-dust';
+      const particle = document.createElement("span");
+      particle.className = "scratch-dust";
       particle.style.left = `${(x / this.activeCanvas.width) * 100}%`;
       particle.style.top = `${(y / this.activeCanvas.height) * 100}%`;
-      particle.style.setProperty('--dust-x', `${(Math.random() - 0.5) * 46}px`);
-      particle.style.setProperty('--dust-y', `${-12 - Math.random() * 34}px`);
+      particle.style.setProperty("--dust-x", `${(Math.random() - 0.5) * 46}px`);
+      particle.style.setProperty("--dust-y", `${-12 - Math.random() * 34}px`);
       cell.appendChild(particle);
       setTimeout(() => particle.remove(), 560);
     }
   }
 
   checkCellProgress() {
-    if (this.activeCellIndex === null || !this.activeCanvas || !this.activeContext) return;
+    if (
+      this.activeCellIndex === null ||
+      !this.activeCanvas ||
+      !this.activeContext
+    )
+      return;
 
-    const progress = this.getCanvasClearPercentage(this.activeCanvas, this.activeContext);
-    const cell = this.activeCanvas.closest('.scratch-cell');
+    const progress = this.getCanvasClearPercentage(
+      this.activeCanvas,
+      this.activeContext,
+    );
+    const cell = this.activeCanvas.closest(".scratch-cell");
 
     if (cell) {
-      cell.style.setProperty('--cell-progress', `${Math.min(Math.round(progress * 100), 100)}%`);
+      cell.style.setProperty(
+        "--cell-progress",
+        `${Math.min(Math.round(progress * 100), 100)}%`,
+      );
     }
 
     if (progress >= 0.48) {
@@ -374,92 +419,136 @@ class ScratchcardManager {
     return clearPixels / sampledPixels;
   }
 
+  checkWinCondition() {
+    const revealedPrizes = this.revealedCells.map(
+      (index) => this.boardCells[index],
+    );
+    const prizeCounts = {};
+
+    for (const prize of revealedPrizes) {
+      if (prize.isEmpty) continue;
+      prizeCounts[prize.text] = (prizeCounts[prize.text] || 0) + 1;
+      if (prizeCounts[prize.text] >= 3) {
+        return prize; // Ganhou este prêmio!
+      }
+    }
+    return null;
+  }
+
   revealCell(index) {
     if (this.revealedCells.includes(index) || this.finished) return;
 
     const cell = this.wrapper.querySelector(`[data-cell-index="${index}"]`);
     if (!cell) return;
 
-    const canvas = cell.querySelector('.scratch-cell-canvas');
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const canvas = cell.querySelector(".scratch-cell-canvas");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-    ctx.globalCompositeOperation = 'destination-out';
+    ctx.globalCompositeOperation = "destination-out";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    cell.classList.add('is-revealed');
-    canvas.style.opacity = '0';
-    canvas.style.transform = 'scale(1.05)';
+    cell.classList.add("is-revealed");
+    canvas.style.opacity = "0";
+    canvas.style.transform = "scale(1.05)";
 
     this.revealedCells.push(index);
     this.updateAttemptText();
 
-    if (this.revealedCells.length >= 3) {
-      this.finishGame();
+    const wonPrize = this.checkWinCondition();
+    if (wonPrize) {
+      this.finishGame(wonPrize);
+    } else if (this.revealedCells.length >= 9) {
+      this.finishGame(null);
     }
   }
 
   updateAttemptText() {
-    const result = document.getElementById('scratch-result');
+    const result = document.getElementById("scratch-result");
     if (!result) return;
 
-    const remaining = Math.max(3 - this.revealedCells.length, 0);
     const revealedLabels = this.revealedCells
-      .map(index => this.boardCells[index].shortLabel)
-      .join(' / ');
+      .map((index) => {
+        const cell = this.boardCells[index];
+        return cell.isEmpty ? "Vazio" : cell.shortLabel;
+      })
+      .join(" / ");
 
-    result.querySelector('.scratch-result-kicker').textContent = `Tentativas restantes: ${remaining}`;
-    result.querySelector('strong').textContent = remaining > 0 ? 'Continue raspando' : 'Resultado';
-    result.querySelector('p').textContent = revealedLabels || 'Arraste sobre uma das casas para revelar o simbolo escondido.';
+    result.querySelector(".scratch-result-kicker").textContent = "Casas Reveladas";
+    result.querySelector("strong").textContent = "Raspando...";
+    result.querySelector("p").textContent =
+      revealedLabels ||
+      "Arraste sobre uma das casas para revelar o símbolo escondido.";
   }
 
-  finishGame() {
+  finishGame(wonPrize) {
     this.finished = true;
+    const didWin = !!wonPrize;
+    const result = document.getElementById("scratch-result");
+    const actionsArea = document.getElementById("scratch-actions-area");
 
-    const selectedCells = this.revealedCells.map(index => this.boardCells[index]);
-    const firstPrize = selectedCells[0];
-    const didWin = selectedCells.every(cell => cell.text === firstPrize.text);
-    const result = document.getElementById('scratch-result');
-    const actionsArea = document.getElementById('scratch-actions-area');
-
-    SafeStorage.setItem('know_last_scratch', Date.now().toString());
+    SafeStorage.setItem("know_last_scratch", Date.now().toString());
 
     if (didWin) {
-      SafeStorage.setItem('know_scratch_prize', firstPrize.text);
+      SafeStorage.setItem("know_scratch_prize", wonPrize.text);
     } else {
-      SafeStorage.removeItem('know_scratch_prize');
+      SafeStorage.removeItem("know_scratch_prize");
     }
 
-    this.wrapper.querySelector('.scratch-card-wrapper')?.classList.add(didWin ? 'scratch-win' : 'scratch-loss');
+    this.wrapper
+      .querySelector(".scratch-card-wrapper")
+      ?.classList.add(didWin ? "scratch-win" : "scratch-loss");
+
+    // Revela todas as outras casas ao finalizar o jogo
+    this.boardCells.forEach((cell, idx) => {
+      if (!this.revealedCells.includes(idx)) {
+        const c = this.wrapper.querySelector(`[data-cell-index="${idx}"]`);
+        if (c) {
+          c.classList.add("is-revealed");
+          const canvas = c.querySelector(".scratch-cell-canvas");
+          if (canvas) {
+            canvas.style.opacity = "0";
+            canvas.style.transform = "scale(1.05)";
+          }
+        }
+      }
+    });
 
     if (result) {
-      result.classList.add(didWin ? 'is-winning' : 'is-empty');
-      result.innerHTML = didWin ? `
+      result.classList.add(didWin ? "is-winning" : "is-empty");
+      result.innerHTML = didWin
+        ? `
         <span class="scratch-result-kicker">3 iguais encontrados</span>
-        <strong>GG, você ganhou!</strong>
-        <p>${firstPrize.text}</p>
-      ` : `
-        <span class="scratch-result-kicker">3 tentativas usadas</span>
+        <strong>Você ganhou!</strong>
+        <p>${wonPrize.text}</p>
+      `
+        : `
+        <span class="scratch-result-kicker">Fim do jogo</span>
         <strong>Não foi dessa vez</strong>
-        <p>As 3 casas não combinaram. Tente novamente amanhã.</p>
+        <p>Esta cartela não continha prêmios. Tente novamente amanhã!</p>
       `;
     }
 
     if (actionsArea) {
-      actionsArea.style.opacity = '1';
-      actionsArea.style.pointerEvents = 'auto';
+      actionsArea.style.opacity = "1";
+      actionsArea.style.pointerEvents = "auto";
     }
 
-    document.getElementById('btn-scratch-redeem')?.addEventListener('click', () => {
-      const enrollmentSection = document.getElementById('matricula');
-      if (enrollmentSection) {
-        enrollmentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+    document
+      .getElementById("btn-scratch-redeem")
+      ?.addEventListener("click", () => {
+        const enrollmentSection = document.getElementById("matricula");
+        if (enrollmentSection) {
+          enrollmentSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
 
-      const inputName = document.getElementById('lead-name');
-      if (inputName) {
-        setTimeout(() => inputName.focus(), 450);
-      }
-    });
+        const inputName = document.getElementById("lead-name");
+        if (inputName) {
+          setTimeout(() => inputName.focus(), 450);
+        }
+      });
   }
 }
 

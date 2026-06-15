@@ -561,7 +561,10 @@
     "copy visual"
     "action visual";
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-rows: repeat(4, min-content);
+  align-content: center;
+  row-gap: 1rem;
+  column-gap: clamp(2rem, 5vw, 5rem);
   text-align: left;
 }
 

@@ -30,160 +30,162 @@ window.SafeStorage = SafeStorage;
 // Banco de dados com exatamente 18 perguntas divididas em 3 Seções Oficiais (6 por seção)
 const QUIZ_SECTIONS = [
   {
-    name: "Seção 1: Perfil & Estilo de Vida",
+    name: "Situações do dia a dia",
     questions: [
       {
-        text: "Em um projeto em grupo, você costuma ser a pessoa que…",
+        text: "Você encontra um erro estranho em algo que está usando. Você:",
         options: [
-          { text: "Resolve os desafios técnicos e desenvolve as partes difíceis.", profile: "tech" },
-          { text: "Apoia quem está com dificuldade e cuida do bem-estar coletivo.", profile: "health" },
-          { text: "Coordena as tarefas, define os prazos e mantém a equipe organizada.", profile: "admin" }
+          { text: "Tenta reproduzir o erro até entender o padrão.", profile: "tech" },
+          { text: "Ignora e continua usando enquanto não atrapalhar muito.", profile: "admin" },
+          { text: "Procura alguém para resolver o problema por você.", profile: "health" }
         ]
       },
       {
-        text: "Nas suas horas de lazer, qual dessas atividades te gera maior engajamento?",
+        text: "Um amigo te chama com um problema pessoal no meio do seu dia. Você:",
         options: [
-          { text: "Desvendar o funcionamento de eletrônicos ou explorar novos softwares.", profile: "tech" },
-          { text: "Aprofundar-se em matérias sobre biologia, saúde ou bem-estar humano.", profile: "health" },
-          { text: "Planejar pequenas metas pessoais, organizar agendas ou planejar negócios.", profile: "admin" }
+          { text: "Escuta e tenta entender o contexto completo antes de responder.", profile: "health" },
+          { text: "Oferece uma solução prática rápida para ele seguir.", profile: "admin" },
+          { text: "Fica curioso com os detalhes e padrões do problema.", profile: "tech" }
         ]
       },
       {
-        text: "Diante de um problema inesperado no seu cotidiano, sua primeira reação é...",
+        text: "Você está em um grupo sem liderança definida. Você tende a:",
         options: [
-          { text: "Analisar logicamente as causas para estruturar um método de solução.", profile: "tech" },
-          { text: "Prestar apoio emocional e acolher as pessoas afetadas pela situação.", profile: "health" },
-          { text: "Tomar as rédeas da situação e liderar um plano de ação estratégico.", profile: "admin" }
+          { text: "Esperar alguém se organizar ou seguir o fluxo.", profile: "health" },
+          { text: "Assumir a organização.", profile: "admin" },
+          { text: "Observar primeiro como o grupo se comporta.", profile: "tech" }
         ]
       },
       {
-        text: "Qual desses ambientes você considera ideal e inspirador para produzir?",
+        text: "Quando algo dá errado num plano importante, você primeiro:",
         options: [
-          { text: "Um espaço moderno equipado com dispositivos tecnológicos e dados precisos.", profile: "tech" },
-          { text: "Um ambiente comunitário ou de assistência, focado em empatia e acolhimento.", profile: "health" },
-          { text: "Um escritório dinâmico de projetos, focado em negociações e metas.", profile: "admin" }
+          { text: "Procura o ponto exato da falha.", profile: "tech" },
+          { text: "Tenta estabilizar a situação rapidamente.", profile: "admin" },
+          { text: "Foca no impacto que isso teve nas pessoas.", profile: "health" }
         ]
       },
       {
-        text: "Que tipo de conteúdo você acompanha com maior frequência por puro interesse?",
+        text: "Em uma tarefa chata mas necessária, você tende a:",
         options: [
-          { text: "Novidades sobre inovações de softwares, inteligência artificial e programação.", profile: "tech" },
-          { text: "Artigos e documentários sobre novas terapias de saúde, ciência e biologia.", profile: "health" },
-          { text: "Podcasts sobre cases de sucesso corporativo, empreendedorismo e liderança.", profile: "admin" }
+          { text: "Encontrar um jeito de automatizar ou otimizar.", profile: "tech" },
+          { text: "Fazer rápido para se livrar logo.", profile: "admin" },
+          { text: "Pedir ajuda ou dividir com alguém.", profile: "health" }
         ]
       },
       {
-        text: "Ao planejar uma viagem ou evento com amigos, você costuma assumir a tarefa de...",
+        text: "Quando percebe que algo poderia ser feito melhor, você:",
         options: [
-          { text: "Configurar os mapas digitais, conferir os dispositivos e gerenciar a conectividade.", profile: "tech" },
-          { text: "Organizar o kit de suporte, conferir a alimentação e cuidar da segurança física de todos.", profile: "health" },
-          { text: "Elaborar o orçamento geral, cotar preços de passagens e gerenciar o cronograma.", profile: "admin" }
+          { text: "Investiga como melhorar tecnicamente.", profile: "tech" },
+          { text: "Adota uma solução prática e segue em frente.", profile: "admin" },
+          { text: "Considera como isso afeta as pessoas envolvidas.", profile: "health" }
         ]
       }
     ]
   },
+
   {
-    name: "Seção 2: Métodos de Trabalho & Lógica",
+    name: "Escolhas implícitas",
     questions: [
       {
-        text: "Se você pudesse desenvolver um projeto escolar do zero hoje, você escolheria...",
+        text: "Você tem que aprender algo novo sozinho. Você prefere:",
         options: [
-          { text: "Criar um site dinâmico interativo ou automatizar tarefas por meio de código.", profile: "tech" },
-          { text: "Organizar uma campanha comunitária de doação de sangue e aferição de saúde física.", profile: "health" },
-          { text: "Liderar uma feira de jovens negócios simulando a captação de investidores técnicos.", profile: "admin" }
+          { text: "Explorar até entender como funciona.", profile: "tech" },
+          { text: "Seguir instruções passo a passo.", profile: "admin" },
+          { text: "Ver alguém fazendo antes de tentar.", profile: "health" }
         ]
       },
       {
-        text: "Em uma simulação de gestão de crises sociais futuras, sua prioridade seria...",
+        text: "Em um ambiente novo, o que chama mais sua atenção?",
         options: [
-          { text: "Implementar sistemas algorítmicos robustos e automações de socorro ágeis.", profile: "tech" },
-          { text: "Fortalecer as redes de apoio clínico e a assistência de saúde direta às famílias.", profile: "health" },
-          { text: "Controlar e alocar orçamentos urgentes visando a eficiência financeira do time.", profile: "admin" }
+          { text: "Como as coisas estão conectadas e funcionando.", profile: "tech" },
+          { text: "Como as pessoas estão se organizando.", profile: "admin" },
+          { text: "Como as pessoas estão se sentindo ali.", profile: "health" }
         ]
       },
       {
-        text: "Qual dessas habilidades práticas você gostaria de aperfeiçoar em aulas práticas?",
+        text: "Você recebe liberdade total para fazer algo útil. Você escolhe:",
         options: [
-          { text: "Desenvolvimento de programas de computadores, banco de dados e cibersegurança.", profile: "tech" },
-          { text: "Procedimentos hospitalares de reanimação, primeiros socorros e biossegurança médica.", profile: "health" },
-          { text: "Técnicas de fluxo de caixa, oratória corporativa e estruturação de equipes.", profile: "admin" }
+          { text: "Criar algo funcional que resolva um problema.", profile: "tech" },
+          { text: "Melhorar a organização de algo existente.", profile: "admin" },
+          { text: "Ajudar diretamente pessoas em dificuldade.", profile: "health" }
         ]
       },
       {
-        text: "O tipo de problema desafiador que mais te motiva a pensar e agir é...",
+        text: "Quando uma ferramenta não funciona como deveria, você:",
         options: [
-          { text: "Uma falha lógica em um sistema ou um enigma matemático de difícil resolução.", profile: "tech" },
-          { text: "Uma pessoa sofrendo com dores físicas ou emocionais precisando de cuidados imediatos.", profile: "health" },
-          { text: "Um fluxo ineficiente de vendas ou um time perdendo rendimento financeiro.", profile: "admin" }
+          { text: "Tenta entender o comportamento interno dela.", profile: "tech" },
+          { text: "Procura uma alternativa mais simples.", profile: "admin" },
+          { text: "Pede ajuda ou troca por outra imediatamente.", profile: "health" }
         ]
       },
       {
-        text: "Ao defender seu ponto de vista em um debate técnico, seus argumentos se baseiam em...",
+        text: "Em uma reunião ou trabalho em grupo, você costuma:",
         options: [
-          { text: "Dados estruturados, probabilidades analíticas e estatísticas frias de sistemas.", profile: "tech" },
-          { text: "Empatia, dignidade humana, ética social e bem-estar coletivo das partes.", profile: "health" },
-          { text: "Viabilidade orçamentária, retorno sobre investimentos e estratégias de eficiência.", profile: "admin" }
+          { text: "Analisar o funcionamento das ideias propostas.", profile: "tech" },
+          { text: "Organizar decisões e próximos passos.", profile: "admin" },
+          { text: "Garantir que todos consigam participar.", profile: "health" }
         ]
       },
       {
-        text: "Seu estilo para compreender e dominar um conceito novo consiste em...",
+        text: "Quando recebe informação nova, você prefere:",
         options: [
-          { text: "Desmontar o problema em frações lógicas, testando a teoria de maneira técnica.", profile: "tech" },
-          { text: "Aprender executando a ação prática direta e interagindo diretamente com os elementos.", profile: "health" },
-          { text: "Identificar a visão macro primeiro para traçar metas ordenadas de estudo.", profile: "admin" }
+          { text: "Entender a lógica por trás dela.", profile: "tech" },
+          { text: "Aplicar direto na prática.", profile: "admin" },
+          { text: "Ver exemplos antes de confiar.", profile: "health" }
         ]
       }
     ]
   },
+
   {
-    name: "Seção 3: Impacto de Carreira & Futuro",
+    name: "Reação sob pressão",
     questions: [
       {
-        text: "A longo prazo, seu maior objetivo profissional é ser reconhecido por...",
+        text: "Em uma situação caótica, você tende a:",
         options: [
-          { text: "Criar sistemas inovadores que facilitem e revolucionem o trabalho das pessoas.", profile: "tech" },
-          { text: "Salvar vidas diretamente, promovendo cura, saúde e cuidado humanizado integral.", profile: "health" },
-          { text: "Liderar equipes de excelência técnica e expandir o faturamento de negócios de impacto.", profile: "admin" }
+          { text: "Buscar a causa raiz do problema.", profile: "tech" },
+          { text: "Tomar controle da organização do ambiente.", profile: "admin" },
+          { text: "Ajudar quem parece mais afetado.", profile: "health" }
         ]
       },
       {
-        text: "Se você ganhasse um prêmio de destaque estudantil, gostaria de recebê-lo por...",
+        text: "Quando algo é muito confuso, você:",
         options: [
-          { text: "Desenvolver o software ou ferramenta tecnológica mais inovadora e complexa da feira.", profile: "tech" },
-          { text: "Executar a ação de acolhimento comunitário de saúde mais marcante e empática do ano.", profile: "health" },
-          { text: "Demonstrar a melhor capacidade de oratória, negociação e gestão operacional de equipes.", profile: "admin" }
+          { text: "Tenta decompor em partes menores.", profile: "tech" },
+          { text: "Procura um método já conhecido para resolver.", profile: "admin" },
+          { text: "Pede ajuda ou opinião externa.", profile: "health" }
         ]
       },
       {
-        text: "Diante da expansão das ferramentas de Inteligência Artificial no mercado, sua visão é...",
+        text: "Quando há pouco tempo e muita coisa para fazer, você:",
         options: [
-          { text: "Quero programar as máquinas e criar os algoritmos de automação que ditarão o amanhã.", profile: "tech" },
-          { text: "A empatia humana e a reabilitação clínica jamais serão copiadas ou executadas por IAs.", profile: "health" },
-          { text: "A liderança corporativa e a alocação tática de recursos continuarão sendo essenciais.", profile: "admin" }
+          { text: "Prioriza entender o problema principal.", profile: "tech" },
+          { text: "Organiza tudo em ordem de execução.", profile: "admin" },
+          { text: "Ajuda quem estiver mais perdido primeiro.", profile: "health" }
         ]
       },
       {
-        text: "Se fosse voluntário em uma grande missão internacional de resgate, você atuaria...",
+        text: "Se alguém depende da sua decisão, você tende a:",
         options: [
-          { text: "Configurando canais seguros de comunicação via satélite e bancos de dados locais.", profile: "tech" },
-          { text: "Prestando assistência hospitalar e cuidados clínicos na linha de frente dos abrigos.", profile: "health" },
-          { text: "Coordenando a logística de distribuição de mantimentos, orçamentos e contatos diplomáticos.", profile: "admin" }
+          { text: "Analisar todas as variáveis antes de agir.", profile: "tech" },
+          { text: "Decidir rápido para evitar atraso.", profile: "admin" },
+          { text: "Pensar no impacto humano da escolha.", profile: "health" }
         ]
       },
       {
-        text: "Qual dessas palestras ministradas por um especialista você assistiria com maior curiosidade?",
+        text: "Quando tudo dá errado ao mesmo tempo, você:",
         options: [
-          { text: "Cibersegurança e o desenvolvimento de novas infraestruturas de programação web.", profile: "tech" },
-          { text: "Procedimentos cirúrgicos de alta complexidade e o futuro da biossegurança clínica.", profile: "health" },
-          { text: "Técnicas modernas de captação de investimentos de risco, oratória e liderança comercial.", profile: "admin" }
+          { text: "Procura o ponto inicial da falha.", profile: "tech" },
+          { text: "Reorganiza o que ainda dá para salvar.", profile: "admin" },
+          { text: "Tenta acalmar a situação geral.", profile: "health" }
         ]
       },
       {
-        text: "Ao finalizar um dia ideal de trabalho, a sensação que você deseja ter é...",
+        text: "Se ninguém sabe o que fazer, você:",
         options: [
-          { text: "Ter decifrado problemas complexos de lógica e deixado sistemas robustos operando.", profile: "tech" },
-          { text: "Ter trazido alívio real e promovido conforto clínico àqueles sob meus cuidados.", profile: "health" },
-          { text: "Ter atingido metas arrojadas de negócios, otimizado recursos e fechado grandes acordos.", profile: "admin" }
+          { text: "Investiga até entender o sistema.", profile: "tech" },
+          { text: "Assume e cria uma estrutura básica.", profile: "admin" },
+          { text: "Procura alguém mais experiente para guiar.", profile: "health" }
         ]
       }
     ]
@@ -344,19 +346,68 @@ class QuizManager {
   renderSectionTransition() {
     const nextSectionName = QUIZ_SECTIONS[this.currentSectionIdx].name;
     
+    // Cria o HTML para a checklist de seções dinamicamente
+    let progressHtml = '';
+    for (let i = 0; i < 3; i++) {
+      const sec = QUIZ_SECTIONS[i];
+      let statusIcon = '🔒';
+      let bgColor = 'rgba(0, 0, 0, 0.2)';
+      let borderColor = 'rgba(255,255,255,0.05)';
+      let opacity = '0.5';
+      let labelColor = 'var(--text-muted)';
+      let titleColor = 'var(--text-secondary)';
+      
+      if (i < this.currentSectionIdx) {
+        statusIcon = '✅';
+        bgColor = 'rgba(85, 203, 150, 0.08)';
+        borderColor = 'rgba(85, 203, 150, 0.2)';
+        opacity = '1';
+        labelColor = 'var(--text-muted)';
+        titleColor = 'var(--text-primary)';
+      } else if (i === this.currentSectionIdx) {
+        statusIcon = '🕒';
+        bgColor = 'rgba(85, 203, 150, 0.12)';
+        borderColor = 'var(--brand-mint)';
+        opacity = '1';
+        labelColor = 'var(--brand-mint)';
+        titleColor = 'var(--brand-mint)';
+      }
+      
+      progressHtml += `
+        <div class="quiz-metric" style="min-height: auto; padding: 0.95rem 1.25rem; background: ${bgColor}; border-color: ${borderColor}; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; opacity: ${opacity}; border-radius: 16px;">
+          <div style="display: flex; flex-direction: column; text-align: left;">
+            <span style="font-size: 0.72rem; text-transform: uppercase; color: ${labelColor}; font-weight: 700; letter-spacing: 0.05em;">Fase ${i + 1}</span>
+            <strong style="font-size: 0.95rem; margin-top: 0.25rem; color: ${titleColor}; font-family: var(--font-headings); font-weight: 700;">${sec.name}</strong>
+          </div>
+          <span style="font-size: 1.2rem;">${statusIcon}</span>
+        </div>
+      `;
+    }
+
     this.container.innerHTML = `
       <div class="quiz-welcome widget-animate">
-        <div class="badge" style="color: var(--brand-mint); border-color: rgba(85,203,150,0.3); background: rgba(85,203,150,0.08)">
+        <div class="badge" style="color: var(--brand-mint); border-color: rgba(85,203,150,0.3); background: rgba(85,203,150,0.08); grid-area: badge;">
           SEÇÃO CONCLUÍDA
         </div>
-        <h3>Pronto para a Próxima Fase?</h3>
-        <p>Você completou com sucesso as primeiras perguntas do teste vocacional. O sistema agora abrirá a:</p>
-        <h4 style="font-family: var(--font-headings); font-weight: 700; color: var(--text-primary); margin-bottom: 1.5rem">${nextSectionName}</h4>
+        <h3 style="grid-area: title;">Pronto a Próxima Fase?</h3>
         
-        <button class="btn btn-primary" id="btn-next-section">
+        <div style="grid-area: copy; display: flex; flex-direction: column; gap: 0.5rem;">
+          <p>Você concluiu a seção anterior com sucesso!</p>
+          <p>O sistema agora abrirá a fase:</p>
+          <h4 style="font-family: var(--font-headings); font-weight: 700; color: var(--brand-mint); font-size: 1.35rem; margin-top: 0.25rem;">${nextSectionName}</h4>
+        </div>
+        
+        <button class="btn btn-primary" id="btn-next-section" style="grid-area: action;">
           <span>Continuar Teste</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
+
+        <div class="quiz-welcome-visual" aria-hidden="true" style="grid-area: visual;">
+          <div class="quiz-visual-grid" style="display: flex; flex-direction: column; width: 100%; gap: 0.75rem; justify-content: center; height: 100%;">
+            <h5 style="font-family: var(--font-headings); font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 700; text-align: left; width: 100%;">Progresso do Quiz</h5>
+            ${progressHtml}
+          </div>
+        </div>
       </div>
     `;
 
@@ -383,33 +434,39 @@ class QuizManager {
         title: "Técnico em Informática",
         career: "Desenvolvedor de Software / Analista de TI",
         desc: "Você possui uma mente brilhante voltada para a lógica, resolução de problemas estruturados e inovação tecnológica. Seu perfil casa perfeitamente com o nosso curso Técnico em Informática! Prepare-se para codificar soluções incríveis e liderar a transformação digital.",
-        icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-info); filter: drop-shadow(0 0 10px rgba(0,180,216,0.3))"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+        icon: `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-info); filter: drop-shadow(0 0 10px rgba(0,180,216,0.5))"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
         bg: "var(--theme-info)"
       },
       health: {
         title: "Técnico em Enfermagem",
         career: "Profissional de Saúde / Enfermeiro Técnico",
         desc: "Seu coração pulsa por empatia, cuidado ao próximo e atenção à saúde humana. Seu perfil tem total afinidade com o curso Técnico em Enfermagem! Venha aprender procedimentos hospitalares de ponta e faça a diferença na vida das pessoas todos os dias.",
-        icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-enferm); filter: drop-shadow(0 0 10px rgba(255,77,109,0.3))"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
+        icon: `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-enferm); filter: drop-shadow(0 0 10px rgba(255,77,109,0.5))"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`,
         bg: "var(--theme-enferm)"
       },
       admin: {
         title: "Técnico em Administração",
         career: "Gestor de Negócios / Empreendedor Técnico",
         desc: "Liderança estratégica, finanças e organização de equipes correm em suas veias! Seu caminho ideal está no curso Técnico em Administração! Domine estratégias de marketing, controle fluxos financeiros e crie os alicerces de empresas de sucesso.",
-        icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-admin); filter: drop-shadow(0 0 10px rgba(255,183,3,0.3))"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+        icon: `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-admin); filter: drop-shadow(0 0 10px rgba(255,183,3,0.5))"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
         bg: "var(--theme-admin)"
       },
       tie: {
         title: "Orientação de Carreira",
         career: "Perfil Híbrido / Multi-talentos",
         desc: "Incrível! Suas respostas revelaram um equilíbrio excepcional entre áreas distintas. Você tem afinidade tanto com a lógica da Tecnologia quanto com a empatia da Saúde ou a visão estratégica da Administração. Recomendamos agendar uma conversa com um de nossos orientadores para te ajudar a escolher o caminho perfeito!",
-        icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-mint); filter: drop-shadow(0 0 10px rgba(85,203,150,0.3))"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
+        icon: `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-mint); filter: drop-shadow(0 0 10px rgba(85,203,150,0.5))"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
         bg: "var(--brand-mint)"
       }
     };
 
     const finalResult = resultsMap[dominantProfile];
+
+    // Calcula as porcentagens para a visualização gráfica
+    const totalScore = this.scores.tech + this.scores.health + this.scores.admin;
+    const techPct = totalScore > 0 ? Math.round((this.scores.tech / totalScore) * 100) : 0;
+    const healthPct = totalScore > 0 ? Math.round((this.scores.health / totalScore) * 100) : 0;
+    const adminPct = totalScore > 0 ? Math.round((this.scores.admin / totalScore) * 100) : 0;
 
     // Persist result in localStorage
     SafeStorage.setItem('know_quiz_result', JSON.stringify({
@@ -420,21 +477,68 @@ class QuizManager {
 
     this.container.innerHTML = `
       <div class="quiz-result widget-animate">
-        <div class="result-badge" style="color: ${finalResult.bg}; border-color: rgba(${dominantProfile === 'tech' ? '0,180,216' : dominantProfile === 'health' ? '255,77,109' : dominantProfile === 'admin' ? '255,183,3' : '85,203,150'}, 0.25); background: rgba(${dominantProfile === 'tech' ? '0,180,216' : dominantProfile === 'health' ? '255,77,109' : dominantProfile === 'admin' ? '255,183,3' : '85,203,150'}, 0.08)">
+        <div class="result-badge" style="grid-area: badge; color: ${finalResult.bg}; border-color: rgba(${dominantProfile === 'tech' ? '0,180,216' : dominantProfile === 'health' ? '255,77,109' : dominantProfile === 'admin' ? '255,183,3' : '85,203,150'}, 0.25); background: rgba(${dominantProfile === 'tech' ? '0,180,216' : dominantProfile === 'health' ? '255,77,109' : dominantProfile === 'admin' ? '255,183,3' : '85,203,150'}, 0.08)">
           ${dominantProfile === 'tie' ? 'MULTIPERFIL REVELADO' : 'CURSO IDEAL RECOMENDADO'}
         </div>
-        <div class="scratch-prize-icon" style="margin-bottom: 0.5rem;">${finalResult.icon}</div>
-        <h3 class="result-course-title">${finalResult.title}</h3>
-        <p class="result-career-text">Indicação: ${finalResult.career}</p>
-        <p class="result-description">${finalResult.desc}</p>
         
-        <div class="hero-actions" style="margin-top: 1.5rem;">
+        <h3 class="result-course-title" style="grid-area: title;">${finalResult.title}</h3>
+        
+        <div style="grid-area: copy; display: flex; flex-direction: column; gap: 0.6rem;">
+          <p class="result-career-text" style="margin: 0; color: ${finalResult.bg}; font-size: 1.1rem; font-weight: 700; font-family: var(--font-headings);">Indicação: ${finalResult.career}</p>
+          <p class="result-description" style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-secondary);">${finalResult.desc}</p>
+        </div>
+        
+        <div class="hero-actions" style="grid-area: action; margin-top: 0.5rem; display: flex; gap: 1rem;">
           <button class="btn btn-primary" id="btn-quiz-enroll">
             <span>${dominantProfile === 'tie' ? 'Agendar Conversa' : 'Iniciar Matrícula'}</span>
           </button>
           <button class="btn btn-secondary" id="btn-quiz-restart">
             <span>Refazer Teste</span>
           </button>
+        </div>
+
+        <!-- Painel Visual do resultado: mostra o gráfico de afinidades e o ícone com glow -->
+        <div class="quiz-welcome-visual" aria-hidden="true" style="grid-area: visual; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem; padding: 1.75rem;">
+          <div style="background: rgba(0, 0, 0, 0.4); width: 84px; height: 84px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid ${finalResult.bg}; box-shadow: 0 0 24px rgba(${dominantProfile === 'tech' ? '0,180,216' : dominantProfile === 'health' ? '255,77,109' : dominantProfile === 'admin' ? '255,183,3' : '85,203,150'}, 0.25); flex-shrink: 0;">
+            ${finalResult.icon}
+          </div>
+          
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 0.75rem;">
+            <h5 style="font-family: var(--font-headings); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; text-align: center; margin-bottom: 0.2rem; letter-spacing: 0.05em;">Seu Mapa de Afinidades</h5>
+            
+            <!-- Barra de Afinidade em Tecnologia -->
+            <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: var(--font-headings); font-weight: 600; color: var(--text-secondary);">
+                <span>Tecnologia & Informática</span>
+                <span style="color: var(--theme-info);">${techPct}%</span>
+              </div>
+              <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden;">
+                <div style="width: ${techPct}%; height: 100%; background: var(--theme-info); border-radius: 99px; box-shadow: 0 0 8px rgba(0,180,216,0.4);"></div>
+              </div>
+            </div>
+            
+            <!-- Barra de Afinidade em Enfermagem -->
+            <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: var(--font-headings); font-weight: 600; color: var(--text-secondary);">
+                <span>Saúde & Enfermagem</span>
+                <span style="color: var(--theme-enferm);">${healthPct}%</span>
+              </div>
+              <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden;">
+                <div style="width: ${healthPct}%; height: 100%; background: var(--theme-enferm); border-radius: 99px; box-shadow: 0 0 8px rgba(255,77,109,0.4);"></div>
+              </div>
+            </div>
+            
+            <!-- Barra de Afinidade em Administração -->
+            <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: var(--font-headings); font-weight: 600; color: var(--text-secondary);">
+                <span>Gestão & Administração</span>
+                <span style="color: var(--theme-admin);">${adminPct}%</span>
+              </div>
+              <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden;">
+                <div style="width: ${adminPct}%; height: 100%; background: var(--theme-admin); border-radius: 99px; box-shadow: 0 0 8px rgba(255,183,3,0.4);"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -451,7 +555,7 @@ class QuizManager {
 
       const selectField = document.getElementById('lead-course');
       if (selectField) {
-        selectField.value = finalResult.title;
+        selectField.value = dominantProfile === 'tie' ? 'Orientação de Carreira' : finalResult.title;
         selectField.dispatchEvent(new Event('change'));
       }
     });
