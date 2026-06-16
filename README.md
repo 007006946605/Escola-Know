@@ -141,3 +141,9 @@ Também é possível navegar para a Secretaria pelo módulo do Hub no site princ
 ## Observação para Apresentação
 
 Este projeto foi construído como um protótipo de alta fidelidade em HTML, CSS e JavaScript puro. A decisão evita dependência de build e facilita a demonstração em contexto acadêmico, mas também significa que módulos grandes, como `secretaria-dashboard.js`, podem ser futuramente divididos em arquivos menores caso o projeto evolua.
+
+## Links
+
+[Link do site](https://dirt2939.github.io/Escola-Know/)
+
+[Link da apresentação](https://www.canva.com/design/DAHLcQ20oEY/fa04XiWSs8vDv0KI5U3DOg/edit?utm_content=DAHLcQ20oEY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
